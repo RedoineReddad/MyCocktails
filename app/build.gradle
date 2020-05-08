@@ -25,6 +25,7 @@ android {
         }
     }
 
+
 }
 
 dependencies {
@@ -39,6 +40,9 @@ dependencies {
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+
+    // CardView
+    implementation "androidx.cardview:cardview:1.0.0"
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
