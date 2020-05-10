@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.mycocktails.databinding.FragmentOverviewBinding
+import com.example.mycocktails.databinding.GridViewItemBinding
 
 class OverviewFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class OverviewFragment : Fragment() {
         val binding = FragmentOverviewBinding.inflate(inflater)
 
         binding.lifecycleOwner = this
-
+        binding.cocktailGrid.adapter = CocktailsGridAdapter()
         binding.viewModel = viewModel
 
 
