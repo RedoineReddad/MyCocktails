@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mycocktails.network.Cocktail
+import com.example.mycocktails.network.CocktailApiStatus
 import com.example.mycocktails.network.CocktailsApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,8 +14,8 @@ import kotlinx.coroutines.launch
 class OverviewViewModel : ViewModel() {
 
     // Variable to handle errors
-    private val _status = MutableLiveData<String>()
-    val status : LiveData<String>
+    private val _status = MutableLiveData<CocktailApiStatus>()
+    val status : LiveData<CocktailApiStatus>
         get() = _status
 
 
@@ -35,12 +36,14 @@ class OverviewViewModel : ViewModel() {
         var getCocktailsDeferred = CocktailsApi.retrofitService.getCocktails("")
         coroutineScope.launch {
             try {
+                _status.value = CocktailApiStatus.LOADING
                 var result = getCocktailsDeferred.await()
                 if (result.drinks.isNotEmpty()){
                     _cocktails.value = result.drinks
+                    _status.value = CocktailApiStatus.DONE
                 }
             }catch (t : Throwable){
-                _status.value = "Failure : " + t.message
+                _status.value = CocktailApiStatus.ERROR
             }
         }
     }
