@@ -18,9 +18,9 @@ class OverviewViewModel : ViewModel() {
         get() = _status
 
 
-    private val _cocktail = MutableLiveData<Cocktail>()
-    val cocktail : LiveData<Cocktail>
-        get() = _cocktail
+    private val _cocktails = MutableLiveData<List<Cocktail>>()
+    val cocktails : LiveData<List<Cocktail>>
+        get() = _cocktails
 
     // Job and coroutine Scope to allow usage of Kotlin coroutine for network call on other threads
     private val viewModelJob = Job()
@@ -37,7 +37,7 @@ class OverviewViewModel : ViewModel() {
             try {
                 var result = getCocktailsDeferred.await()
                 if (result.drinks.isNotEmpty()){
-                    _cocktail.value = result.drinks[0]
+                    _cocktails.value = result.drinks
                 }
             }catch (t : Throwable){
                 _status.value = "Failure : " + t.message
