@@ -1,5 +1,6 @@
 package com.example.mycocktails
 
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.mycocktails.network.Cocktail
+import com.example.mycocktails.network.CocktailApiStatus
 import com.example.mycocktails.overview.CocktailsGridAdapter
 
 // Binding function to provide image from URL to an ImageView
@@ -29,4 +31,19 @@ fun bindImage(imageView: ImageView, imgUrl:String?){
 fun bindRecyclerView(recyclerView: RecyclerView, cocktailList: List<Cocktail>?){
     val adapter = recyclerView.adapter as CocktailsGridAdapter
     adapter.submitList(cocktailList)
+}
+
+@BindingAdapter("cocktailApiStatus")
+fun bindStatus(statusImgView : ImageView, status: CocktailApiStatus?){
+    when(status){
+        CocktailApiStatus.LOADING -> {
+            statusImgView.visibility  = View.VISIBLE
+            statusImgView.setImageResource(R.drawable.loading_animation)
+        }
+        CocktailApiStatus.ERROR -> {
+            statusImgView.visibility = View.VISIBLE
+            statusImgView.setImageResource(R.drawable.ic_connection_error)
+        }
+        CocktailApiStatus.DONE-> statusImgView.visibility = View.GONE
+    }
 }
