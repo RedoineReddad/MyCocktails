@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mycocktails.databinding.GridViewItemBinding
 import com.example.mycocktails.network.Cocktail
 
-class CocktailsGridAdapter : ListAdapter<Cocktail, CocktailsGridAdapter.CocktailViewHolder>(DiffCallBack) {
+class CocktailsGridAdapter(private val onClickListener: OnClickListener) : ListAdapter<Cocktail, CocktailsGridAdapter.CocktailViewHolder>(DiffCallBack) {
     class CocktailViewHolder(private var binding : GridViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cocktail: Cocktail){
             binding.cocktail = cocktail
@@ -33,6 +33,13 @@ class CocktailsGridAdapter : ListAdapter<Cocktail, CocktailsGridAdapter.Cocktail
 
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {
         val cocktail = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.clickListener(cocktail)
+        }
         holder.bind(cocktail)
+    }
+
+    class OnClickListener(val clickListener : (cocktail : Cocktail) -> Unit ){
+        fun OnClick(cocktail:Cocktail) = clickListener(cocktail)
     }
 }

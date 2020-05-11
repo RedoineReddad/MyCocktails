@@ -13,15 +13,20 @@ import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
 
-    // Variable to handle errors
+    // Variables to handle errors with data binding
     private val _status = MutableLiveData<CocktailApiStatus>()
     val status : LiveData<CocktailApiStatus>
         get() = _status
 
-
+    // variables to store the list of cocktail to be displayed in the recyclerView
     private val _cocktails = MutableLiveData<List<Cocktail>>()
     val cocktails : LiveData<List<Cocktail>>
         get() = _cocktails
+
+    // variables to handle navigation and pass data to detailFragment
+    private val _navigateToSelectedCocktail = MutableLiveData<Cocktail>()
+    val navigateToSelectedCocktail : LiveData<Cocktail>
+        get () = _navigateToSelectedCocktail
 
     // Job and coroutine Scope to allow usage of Kotlin coroutine for network call on other threads
     private val viewModelJob = Job()
@@ -46,6 +51,14 @@ class OverviewViewModel : ViewModel() {
                 _status.value = CocktailApiStatus.ERROR
             }
         }
+    }
+
+    fun displayCocktailDetails(cocktail: Cocktail){
+        _navigateToSelectedCocktail.value = cocktail
+    }
+
+    fun onDisplayedCocktailDetails(){
+        _navigateToSelectedCocktail.value = null
     }
     // onCleared method to cancel Job and stop loading data
     override fun onCleared() {

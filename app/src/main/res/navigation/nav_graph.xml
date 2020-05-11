@@ -18,6 +18,10 @@
         android:id="@+id/detailFragment"
         android:name="com.example.mycocktails.detail.DetailFragment"
         android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail"/>
-<!--    TODO Add a Cocktail class argument to detailFragment-->
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="selectedCocktail"
+            app:argType="com.example.mycocktails.network.Cocktail"/>
+    </fragment>
+
 </navigation>

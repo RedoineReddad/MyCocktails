@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.mycocktails.detail.DetailViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,12 +16,14 @@
 
         <ImageView
             android:id="@+id/main_cocktail_image"
-            android:layout_width="0dp"
-            android:layout_height="266dp"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/main_cocktail_name"
+            app:imageUrl="@{viewModel.selectedCocktail.imgSrcUrl}"
             tools:src="@tools:sample/backgrounds/scenic"
             tools:ignore="ContentDescription" />
 
@@ -27,6 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:fontFamily="@font/roboto_medium"
+            android:text="@{viewModel.selectedCocktail.name}"
             style="@style/Heading"
             tools:text="Test Name" />
 
@@ -49,7 +58,7 @@
             app:layout_constraintTop_toBottomOf="@id/main_cocktail_ingredients"
             app:layout_constraintBottom_toTopOf="@id/main_cocktail_instructions"
             tools:itemCount="1"
-            tools:listitem="@android:layout/list_content"/>
+            tools:listitem="Bonjour"/>
 
         <TextView
             android:id="@+id/main_cocktail_instructions"
@@ -67,7 +76,10 @@
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_cocktail_instructions"/>
+            app:layout_constraintTop_toBottomOf="@+id/main_cocktail_instructions"
+            android:textSize="@dimen/mediumSize"
+            android:text="@{viewModel.selectedCocktail.instructions}"
+            tools:text="Test Name"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
