@@ -11,6 +11,13 @@
     <style name="Heading">
         <item name="android:textSize">@dimen/headingSize</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/darkGray</item>
+    </style>
+
+    <style name="description">
+        <item name="android:textSize">@dimen/mediumSize</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/darkGray</item>
     </style>
 
 </resources>

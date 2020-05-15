@@ -2,4 +2,5 @@
 <resources>
     <dimen name="headingSize">24sp</dimen>
     <dimen name="mediumSize">18sp</dimen>
+    <dimen name="grid_name_size">12sp</dimen>
 </resources>

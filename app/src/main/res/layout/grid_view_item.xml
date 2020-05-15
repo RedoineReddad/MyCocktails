@@ -35,7 +35,7 @@
             android:fontFamily="@font/roboto_medium"
             android:padding="2dp"
             android:textColor="@color/pureWhite"
-            android:textSize="12sp"
+            android:textSize="@dimen/grid_name_size"
             android:gravity="center_horizontal"
             android:background="@color/pastelLightBlue"
             android:text="@{cocktail.name}"
