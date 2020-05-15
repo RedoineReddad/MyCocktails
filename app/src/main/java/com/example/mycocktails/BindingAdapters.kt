@@ -33,6 +33,7 @@ fun bindRecyclerView(recyclerView: RecyclerView, cocktailList: List<Cocktail>?){
     adapter.submitList(cocktailList)
 }
 
+// Binding function to handle display of animation or error image
 @BindingAdapter("cocktailApiStatus")
 fun bindStatus(statusImgView : ImageView, status: CocktailApiStatus?){
     when(status){
