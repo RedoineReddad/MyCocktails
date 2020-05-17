@@ -11,6 +11,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.mycocktails.network.Cocktail
 import com.example.mycocktails.network.CocktailApiStatus
 import com.example.mycocktails.overview.CocktailsGridAdapter
+import com.example.mycocktails.overview.FilterListAdapter
+import com.example.mycocktails.overview.Letter
 
 // Binding function to provide image from URL to an ImageView
 @BindingAdapter("imageUrl")
@@ -31,6 +33,12 @@ fun bindImage(imageView: ImageView, imgUrl:String?){
 fun bindRecyclerView(recyclerView: RecyclerView, cocktailList: List<Cocktail>?){
     val adapter = recyclerView.adapter as CocktailsGridAdapter
     adapter.submitList(cocktailList)
+}
+
+@BindingAdapter("lettersList")
+fun bindLettersRecyclerView(recyclerView: RecyclerView, letterList : List<Letter>?){
+    val adapter = recyclerView.adapter as FilterListAdapter
+    adapter.submitList(letterList)
 }
 
 // Binding function to handle display of animation or error image

@@ -13,6 +13,20 @@ import kotlinx.coroutines.launch
 
 class OverviewViewModel : ViewModel() {
 
+    private val _alphabet = listOf<Letter>(
+        Letter("A"), Letter("B"), Letter("C"),
+        Letter("D"), Letter("E"), Letter("F"),
+        Letter("G"), Letter("H"), Letter("I"),
+        Letter("J"), Letter("K"), Letter("L"),
+        Letter("M"), Letter("N"), Letter("O"),
+        Letter("P"), Letter("Q"), Letter("R"),
+        Letter("S"), Letter("T"), Letter("U"),
+        Letter("V"), Letter("W"), Letter("Y"),
+        Letter("Z")
+    )
+    val alphabet
+        get() = _alphabet
+
     // Variables to handle errors with data binding
     private val _status = MutableLiveData<CocktailApiStatus>()
     val status : LiveData<CocktailApiStatus>
@@ -38,7 +52,24 @@ class OverviewViewModel : ViewModel() {
 
     // Deferred call on
     private fun getCocktailsDetails() {
-        var getCocktailsDeferred = CocktailsApi.retrofitService.getCocktails("")
+        var getCocktailsDeferred = CocktailsApi.retrofitService.getAllCocktails("")
+        coroutineScope.launch {
+            try {
+                _status.value = CocktailApiStatus.LOADING
+                var result = getCocktailsDeferred.await()
+                if (result.drinks.isNotEmpty()){
+                    _cocktails.value = result.drinks
+                    _status.value = CocktailApiStatus.DONE
+                }
+            }catch (t : Throwable){
+                _status.value = CocktailApiStatus.ERROR
+            }
+        }
+    }
+
+    // Function to reset list
+    fun getCocktailsByFirstLetter(alphabet: Letter){
+        var getCocktailsDeferred = CocktailsApi.retrofitService.getCocktailsByLetter(alphabet.letter)
         coroutineScope.launch {
             try {
                 _status.value = CocktailApiStatus.LOADING

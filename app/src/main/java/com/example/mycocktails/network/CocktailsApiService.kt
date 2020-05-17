@@ -26,7 +26,11 @@ private val retrofit = Retrofit.Builder()
 // API service interface to provide GET requests
 interface CocktailsApiService{
     @GET("search.php")
-    fun getCocktails(@Query("s")type :String):
+    fun getAllCocktails(@Query("s")type :String):
+            Deferred<Result>
+
+    @GET("search.php")
+    fun getCocktailsByLetter(@Query("f")letter : String):
             Deferred<Result>
 }
 // Singleton object to initialize API service
