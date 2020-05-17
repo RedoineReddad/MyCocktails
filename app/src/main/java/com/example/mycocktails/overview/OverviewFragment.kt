@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mycocktails.databinding.FragmentOverviewBinding
 import com.example.mycocktails.databinding.GridViewItemBinding
 
@@ -26,6 +29,11 @@ class OverviewFragment : Fragment() {
         binding.cocktailGrid.adapter = CocktailsGridAdapter(CocktailsGridAdapter.OnClickListener{ cocktail ->
             viewModel.displayCocktailDetails(cocktail)
         })
+        // setting the layout layout manager to an Horizontal LinearLayoutManager
+        binding.filteringList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.filteringList.adapter = FilterListAdapter(FilterListAdapter.OnClickListener { letter ->
+            viewModel.getCocktailsByFirstLetter(letter)
+        })
 
         viewModel.navigateToSelectedCocktail.observe(this, Observer {cocktail ->
             if (null != cocktail){
@@ -33,8 +41,6 @@ class OverviewFragment : Fragment() {
                 viewModel.onDisplayedCocktailDetails()
             }
         })
-
-
 
         return binding.root
     }
