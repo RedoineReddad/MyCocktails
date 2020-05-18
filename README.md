@@ -27,15 +27,15 @@ the list of cocktails displayed by the first letter, thanks to a carousel of let
 
 - Displays the list of 25 cocktails (limited by the API) and the letters to filter.
 
-<img src="screenshots/home_screen" alt="List of cocktails"> 
+<img src="screenshots/home_screen.jpg" alt="List of cocktails"> 
 
 - Home screen filtered by the letter M
 
-<img src="screenshots/home_screen_filtered" alt="List of filtered cocktails">
+<img src="screenshots/home_screen_filtered.jpg" alt="List of filtered cocktails">
 
 ### Detail Screen : 
 
 - Displays the recipe of the selected cocktail with a larger image in a scrollable view
 
-<img src="screenshots/detail_screen1" alt="Recipe of the Long Island Tea"> <img src="screenshots/detail_screen2" alt="Recipe of the Lone Tree Cocktail">
+<img src="screenshots/detail_screen1.jpg" alt="Recipe of the Long Island Tea"> <img src="screenshots/detail_screen2.jpg" alt="Recipe of the Lone Tree Cocktail">
 
