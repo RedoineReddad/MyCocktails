@@ -20,6 +20,8 @@ the list of cocktails displayed by the first letter, thanks to a carousel of let
 	- Filters by first letter with an horizontal RecyclerView
 	- Use of HTML formatting to display the list of ingredients
 	- Animations on various events 
+	- Kotlin coroutines to handle network calls
+	- DataBinding 
 	
 ## Features :
 
